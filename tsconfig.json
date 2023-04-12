@@ -28,6 +28,9 @@
       "@/utility": [
         "./src/utility/index"
       ],
+      "@/pages/components": [
+        "./src/pages/components"
+      ],
     }
   },
   "include": ["src"],

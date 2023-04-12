@@ -1,4 +1,3 @@
-
 export { CartPage } from "./cart/CartPage"
 export { ShopPage } from "./shop/ShopPage"
 export { CheckoutPage } from "./checkout/CheckoutPage"
