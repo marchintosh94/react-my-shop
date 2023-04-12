@@ -49,11 +49,11 @@ input[type="number"].error {
 }
 
 .btn.primary {
-  @apply bg-white hover:bg-sky-200 text-black
+  @apply bg-white hover:bg-emerald-100 text-black
 }
 
 .btn.accent {
-  @apply bg-pink-500 hover:bg-pink-600 text-white
+  @apply bg-emerald-400 hover:bg-emerald-500 text-white
 }
 
 .btn.success {

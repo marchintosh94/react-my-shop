@@ -1,54 +1,40 @@
-import { useState } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { 
+  CMSOrdersPage, 
+  CMSPage, 
+  CMSProductsPage, 
+  CartPage, 
+  CheckoutPage, 
+  LoginPage, 
+  ShopPage, 
+  ThanksPage 
+} from './pages'
+import { NavBar } from '@/shared'
 
 const App = () => {
 
   return (
-    <div className='page'>
-      <h1 className="title">UI Kit</h1>
+    <BrowserRouter>
+      <NavBar/>
+      <div className='page'>
+        <Routes>
+          <Route path="shop" element={ <ShopPage/> }/>
+          <Route path="cart" element={ <CartPage/> }/>
+          <Route path="checkout" element={ <CheckoutPage/> }/>
+          <Route path="thankyou" element={ <ThanksPage/> }/>
+          <Route path="login" element={ <LoginPage/> }/>
 
-      <table className="table-auto w-full hover">
-        <thead>
-          <tr>
-              <th>Song</th>
-              <th>Artist</th>
-              <th>Year</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-          <td>Malcolm Lockyer</td>
-          <td>1961</td>
-        </tr>
-        <tr>
-          <td>Witchy Woman</td>
-          <td>The Eagles</td>
-          <td>1972</td>
-        </tr>
-        <tr>
-          <td>Shining Star</td>
-          <td>Earth, Wind, and Fire</td>
-          <td>1975</td>
-        </tr>
-        </tbody>
-      </table>
+          {/* CMS */}
+          <Route path="cms" element={ <CMSPage/> }>
+            <Route path="products" element={ <CMSProductsPage/> }/>
+            <Route path="orders" element={ <CMSOrdersPage/> }/>
+            <Route index element={ <Navigate to={'products'}/> }/>
+          </Route>
 
-      <input type="text" />
-      <input type="text" className="error" />
-      
-      <br />
-
-      <button className="btn">default</button>
-      <button className="btn dark">dark</button>
-      <button className="btn danger">danger</button>
-      <button className="btn primary">primary</button>
-      <button className="btn accent">accent</button>
-      <button className="btn success">success</button>
-      <button className="btn success outline">outline</button>
-      <button className="btn outline">outline</button>
-      <button className="btn primary">base</button>
-      <button className="btn primary lg">lg</button>
-    </div> 
+          <Route path='*' element={ <Navigate to={'shop'}/>}/>
+        </Routes>
+      </div> 
+    </BrowserRouter>    
   )
 }
 
