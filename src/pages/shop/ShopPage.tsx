@@ -3,6 +3,7 @@ import { pocketbase } from "@/utility"
 import { useCallback, useEffect, useState } from "react"
 import { ProductCard } from "@/pages/components"
 import { ServerError, Spinner } from "@/shared"
+import { ClientResponseError } from "pocketbase"
 
 export const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([])
@@ -19,8 +20,10 @@ export const ShopPage = () => {
         setError(false)
         setProducts(res.items)
       })
-      .catch(err => {
-        setError(true)
+      .catch((err: ClientResponseError) => {
+        if (err.status != 0){
+          setError(true)
+        }
       })
       .finally(() => {
         setPending(false)

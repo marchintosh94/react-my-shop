@@ -4,8 +4,8 @@ import { memo } from "react";
 
 export const Spinner = memo(() => {
   return (
-    <div>
-      <FontAwesomeIcon icon={faSpinner} spinPulse/>
+    <div className="flex w-full  justify-center items-center">
+      <FontAwesomeIcon icon={faSpinner} spinPulse className="h-8 w-8"/>
     </div>
   )
 })

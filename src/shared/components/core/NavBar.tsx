@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import laptop from "../../../assets/laptop.png"
 import { isActive } from "../../../utility/router.utility"
+import { CartPanel } from "@/shared"
 
 export const NavBar = () => {
 
@@ -20,14 +21,16 @@ export const NavBar = () => {
             Cart: 0
           </button>
         </div>
-      </div>
 
-      <div className="fixed bottom-2 right-2 p-3 bg-zinc-900/80 rounded-full">
-        <NavLink className={'btn accent lg'} to="login">Login</NavLink>
-        <NavLink className={'btn accent lg'} to="cms">Cms</NavLink>
-        <button className="btn primary lg">Logout</button>
-      </div>
+        <CartPanel/>
 
+        <div className="fixed bottom-2 right-2 p-3 bg-zinc-900/80 rounded-full">
+          <NavLink className={'btn accent lg'} to="login">Login</NavLink>
+          <NavLink className={'btn accent lg'} to="cms">Cms</NavLink>
+          <button className="btn primary lg">Logout</button>
+        </div>
+
+      </div>
     </div>
   )
 }
