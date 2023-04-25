@@ -2,8 +2,12 @@ import { NavLink } from "react-router-dom"
 import laptop from "../../../assets/laptop.png"
 import { isActive } from "../../../utility/router.utility"
 import { CartPanel } from "@/shared"
+import { useCart, useCartPanel } from "@/services/cart"
 
 export const NavBar = () => {
+  const isCartPanelOpen = useCartPanel(state => state.open)
+  const toggleCartPanel = useCartPanel(state => state.toggle)
+  const cartItemCount = useCart(state => state.list.length)
 
   return (
     <div className="fixed top-0 left-0 right-0 shadow-2xl z-10">
@@ -17,12 +21,12 @@ export const NavBar = () => {
 
         {/* Cart buton badge */}
         <div>
-          <button className="btn accent lg">
-            Cart: 0
+          <button className="btn accent lg" onClick={toggleCartPanel}>
+            Cart: {cartItemCount}
           </button>
         </div>
 
-        <CartPanel/>
+        { isCartPanelOpen && <CartPanel/>}
 
         <div className="fixed bottom-2 right-2 p-3 bg-zinc-900/80 rounded-full">
           <NavLink className={'btn accent lg'} to="login">Login</NavLink>

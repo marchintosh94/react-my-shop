@@ -1,11 +1,11 @@
 import { Product } from "@/model/product.type"
 
 interface ProductCardProps {
-  product: Partial<Product>;
-  onAddToCart: (product: Partial<Product>) => void
+  product: Product;
+  onAddToCart?: (product: Product) => void
 }
 
-export const ProductCard = ({product, onAddToCart}: ProductCardProps) => {
+export const ProductCard: React.FC<ProductCardProps> = ({product, onAddToCart}) => {
   return (
     <div
       className="overflow-hidden rounded-lg shadow-xl relative h-[350px] border border-gray-100/20 group hover:cursor-pointer"
@@ -22,7 +22,7 @@ export const ProductCard = ({product, onAddToCart}: ProductCardProps) => {
         <h3 className="text-xl font-bold">€{product.cost}</h3>
       </div>
       <div className="absolute bottom-0 h-0 w-full overflow-hidden group-hover:h-12 transition-all ease-in-out duration-500 ">
-        <button onClick={() => onAddToCart(product)} className="w-full h-full bg-emerald-500 text-lg font-semibold">
+        <button onClick={() => onAddToCart && onAddToCart(product)} className="w-full h-full bg-emerald-500 text-lg font-semibold">
             {product.name}&nbsp;€{product.cost}
         </button>
       </div>

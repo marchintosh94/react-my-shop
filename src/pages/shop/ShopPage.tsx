@@ -1,14 +1,15 @@
 import { Product } from "@/model/product.type"
 import { pocketbase } from "@/utility"
-import { useCallback, useEffect, useState } from "react"
-import { ProductCard } from "@/pages/components"
+import { useEffect, useState } from "react"
 import { ServerError, Spinner } from "@/shared"
 import { ClientResponseError } from "pocketbase"
+import { HOCProductCard } from "./components/HOCProductCard"
 
 export const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([])
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+
 
 
   useEffect(() => {
@@ -30,10 +31,6 @@ export const ShopPage = () => {
       })
   }, [])
 
-  const addToCart = useCallback((product: Partial<Product>) => {
-
-  }, [])
-
   return (
     <div className="py-3">
       <h1 className="title">SHOP</h1>
@@ -48,7 +45,7 @@ export const ShopPage = () => {
 
           {
             products.map(p => (
-              <ProductCard onAddToCart={addToCart} key={p.id} product={p}/>
+              <HOCProductCard key={p.id} product={p}/>
             ))
           }
 
