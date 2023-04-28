@@ -2,12 +2,12 @@ import { NavLink } from "react-router-dom"
 import laptop from "../../../assets/laptop.png"
 import { isActive } from "../../../utility/router.utility"
 import { CartPanel } from "@/shared"
-import { useCart, useCartPanel } from "@/services/cart"
+import { selectCartTotalItems, useCart, useCartPanel } from "@/services/cart"
 
 export const NavBar = () => {
   const isCartPanelOpen = useCartPanel(state => state.open)
   const toggleCartPanel = useCartPanel(state => state.toggle)
-  const cartItemCount = useCart(state => state.list.length)
+  const cartItemCount = useCart(selectCartTotalItems)
 
   return (
     <div className="fixed top-0 left-0 right-0 shadow-2xl z-10">

@@ -1,10 +1,11 @@
-import { useCart, useCartPanel } from "@/services/cart";
+import { selectCartList, selectCartTotalCost, useCart, useCartPanel } from "@/services/cart";
 import { useNavigate } from "react-router-dom";
 
 export const CartPanel = () => {
   const navigate = useNavigate()
   const closeCartPanel = useCartPanel(state => state.closeOverlay)
-  const cartItems = useCart(state => state.list)
+  const cartItems = useCart(selectCartList)
+  const totalCartItems = useCart(selectCartTotalCost)
   const goToCart = (): void => {
     closeCartPanel()
     navigate('cart')
@@ -26,7 +27,7 @@ export const CartPanel = () => {
         }
       </ul>
 
-      <div className="flex justify-end text-xl font-bold">Total €{cartItems.reduce((accumulator, current) => accumulator + (current.qty * current.product.cost), 0).toFixed(2)}</div>
+      <div className="flex justify-end text-xl font-bold">Total €{totalCartItems.toFixed(2)}</div>
       <div className="flex justify-center">
         <button className="btn primary" onClick={goToCart}>
           Go to Cart
