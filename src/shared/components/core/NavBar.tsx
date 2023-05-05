@@ -1,13 +1,22 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import laptop from "../../../assets/laptop.png"
 import { isActive } from "../../../utility/router.utility"
 import { CartPanel } from "@/shared"
-import { selectCartTotalItems, useCart, useCartPanel } from "@/services/cart"
+import { selectCartIsEmpty, selectCartTotalItems, useCart, useCartPanel } from "@/services/cart"
+import { useAuth } from "@/services/auth"
 
 export const NavBar = () => {
+  const navigate = useNavigate()
   const isCartPanelOpen = useCartPanel(state => state.open)
   const toggleCartPanel = useCartPanel(state => state.toggle)
   const cartItemCount = useCart(selectCartTotalItems)
+  const cartIsEmpty = useCart(selectCartIsEmpty)
+  const logout = useAuth(state => state.logout)
+
+  const logoutHandler = () => {
+    logout()
+    navigate('/login')
+  }
 
   return (
     <div className="fixed top-0 left-0 right-0 shadow-2xl z-10">
@@ -21,7 +30,7 @@ export const NavBar = () => {
 
         {/* Cart buton badge */}
         <div>
-          <button className="btn accent lg" onClick={toggleCartPanel}>
+          <button className="btn accent lg" disabled={cartIsEmpty} onClick={toggleCartPanel}>
             Cart: {cartItemCount}
           </button>
         </div>
@@ -31,7 +40,7 @@ export const NavBar = () => {
         <div className="fixed bottom-2 right-2 p-3 bg-zinc-900/80 rounded-full">
           <NavLink className={'btn accent lg'} to="login">Login</NavLink>
           <NavLink className={'btn accent lg'} to="cms">Cms</NavLink>
-          <button className="btn primary lg">Logout</button>
+          <button type="button" onClick={logoutHandler} className="btn primary lg">Logout</button>
         </div>
 
       </div>
