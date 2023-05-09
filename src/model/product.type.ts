@@ -10,3 +10,7 @@ export interface Product {
   tmb: string;
   updated: string;
 }
+
+export interface ProductForm extends Omit<Product, 'id' | 'collectionId' | 'collectionName' | 'created' | 'updated'> {
+  id?: string;
+}

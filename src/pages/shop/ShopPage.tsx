@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { ServerError, Spinner } from "@/shared"
 import { ClientResponseError } from "pocketbase"
 import { HOCProductCard } from "./components/HOCProductCard"
+import { getProducts } from "@/services/api"
 
 export const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([])
@@ -14,9 +15,7 @@ export const ShopPage = () => {
 
   useEffect(() => {
     setPending(true)
-    pocketbase
-      .collection('products')
-      .getList<Product>()
+    getProducts()
       .then(res => {
         setError(false)
         setProducts(res.items)

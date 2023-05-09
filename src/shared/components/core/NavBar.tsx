@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import laptop from "../../../assets/laptop.png"
 import { isActive } from "../../../utility/router.utility"
-import { CartPanel } from "@/shared"
+import { CartPanel, IfLogged } from "@/shared"
 import { selectCartIsEmpty, selectCartTotalItems, useCart, useCartPanel } from "@/services/cart"
 import { useAuth } from "@/services/auth"
 
@@ -38,9 +38,14 @@ export const NavBar = () => {
         { isCartPanelOpen && <CartPanel/>}
 
         <div className="fixed bottom-2 right-2 p-3 bg-zinc-900/80 rounded-full">
-          <NavLink className={'btn accent lg'} to="login">Login</NavLink>
           <NavLink className={'btn accent lg'} to="cms">Cms</NavLink>
-          <button type="button" onClick={logoutHandler} className="btn primary lg">Logout</button>
+          <IfLogged
+            elseNode={
+              <NavLink className={'btn accent lg'} to="login">Login</NavLink>
+            }
+          >
+            <button type="button" onClick={logoutHandler} className="btn primary lg">Logout</button>
+          </IfLogged>
         </div>
 
       </div>

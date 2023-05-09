@@ -9,7 +9,7 @@ import {
   ShopPage, 
   ThanksPage 
 } from './pages'
-import { NavBar } from '@/shared'
+import { NavBar, PrivateRoute } from '@/shared'
 
 const App = () => {
 
@@ -25,7 +25,11 @@ const App = () => {
           <Route path="login" element={ <LoginPage/> }/>
 
           {/* CMS */}
-          <Route path="cms" element={ <CMSPage/> }>
+          <Route path="cms" element={ 
+            <PrivateRoute>
+              <CMSPage/> 
+            </PrivateRoute>
+          }>
             <Route path="products" element={ <CMSProductsPage/> }/>
             <Route path="orders" element={ <CMSOrdersPage/> }/>
             <Route index element={ <Navigate to={'products'}/> }/>
