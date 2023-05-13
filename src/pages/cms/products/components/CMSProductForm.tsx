@@ -5,7 +5,13 @@ export interface CMSProductFormProps {
   activeItem: ProductForm | null;
   onClose: () => void;
 }
- 
+
+const initialState: ProductForm = {
+  name: '',
+  description: '',
+  tmb: '',
+  img: ''
+}
 export function CMSProductForm(
   props: CMSProductFormProps
 ) {
