@@ -41,7 +41,8 @@ export const productReducer = (state: ProductState, {payload, type}: ProductsAct
         ...state, 
         products: [...state.products, payload],
         pending: false, 
-        error: null
+        error: null,
+        activeItem: null
       }
     case 'productEditSuccess':
       return { 
@@ -54,6 +55,7 @@ export const productReducer = (state: ProductState, {payload, type}: ProductsAct
           accumulator.push(product)
           return accumulator
         }, []),
+        activeItem: null,
         pending: false,
         error: null
       }

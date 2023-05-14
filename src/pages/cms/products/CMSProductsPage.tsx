@@ -3,6 +3,7 @@ import { useProduct } from "@/services/products";
 import { ServerError, Spinner } from "@/shared";
 import { CMSProductsList } from "./components/CMSProductsList";
 import { CMSProductForm } from "./components/CMSProductForm";
+import { ProductForm } from "@/model/product.type";
 
 
 export const CMSProductsPage = () => {
@@ -20,6 +21,8 @@ export const CMSProductsPage = () => {
       <CMSProductForm 
         activeItem={activeItem}
         onClose={actions.resetActiveItem}
+        onAdd={actions.addProduct}
+        onEdit={actions.updateProduct}
       />
 
       <CMSProductsList
@@ -28,6 +31,13 @@ export const CMSProductsPage = () => {
         onEditItem={actions.setActiveItem}
         onDeleteItem={actions.remove}
       />
+
+      <button
+        className="btn primary"
+        onClick={() => actions.setActiveItem({} as ProductForm)}
+      >
+        ADD NEW
+      </button>
     </div>
   )
 }

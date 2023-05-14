@@ -1,33 +1,13 @@
-import { Product } from "@/model/product.type"
-import { pocketbase } from "@/utility"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { ServerError, Spinner } from "@/shared"
-import { ClientResponseError } from "pocketbase"
 import { HOCProductCard } from "./components/HOCProductCard"
-import { getProducts } from "@/services/api"
+import { useProduct } from "@/services/products"
 
 export const ShopPage = () => {
-  const [products, setProducts] = useState<Product[]>([])
-  const [pending, setPending] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-
-
+  const { actions, error, pending, products } = useProduct()
 
   useEffect(() => {
-    setPending(true)
-    getProducts()
-      .then(res => {
-        setError(false)
-        setProducts(res.items)
-      })
-      .catch((err: ClientResponseError) => {
-        if (err.status != 0){
-          setError(true)
-        }
-      })
-      .finally(() => {
-        setPending(false)
-      })
+    actions.getAll()
   }, [])
 
   return (

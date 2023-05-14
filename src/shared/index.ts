@@ -6,3 +6,5 @@ export { withCartManager } from './HOC/withCartManager'
 
 export { IfLogged } from './components/auth/IfLogged'
 export { PrivateRoute } from './components/auth/PrivateRoute'
+
+export { useCloudinary } from './hooks/useCloudinary'
