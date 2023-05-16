@@ -3,7 +3,7 @@ import { ServerError, Spinner } from "@/shared"
 import { HOCProductCard } from "./components/HOCProductCard"
 import { useProduct } from "@/services/products"
 
-export const ShopPage = () => {
+const ShopPage = () => {
   const { actions, error, pending, products } = useProduct()
 
   useEffect(() => {
@@ -34,3 +34,5 @@ export const ShopPage = () => {
     </div>
   )
 }
+
+export default ShopPage

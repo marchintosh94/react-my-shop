@@ -4,7 +4,7 @@ import { selectAuthError, selectAuthIsLogged, useAuth } from "@/services/auth"
 import { ServerError } from "@/shared"
 import { useNavigate } from "react-router-dom"
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const navigate = useNavigate()
   const {
     actions,
@@ -36,3 +36,5 @@ export const LoginPage = () => {
     </div>
   )
 }
+
+export default LoginPage

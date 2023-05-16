@@ -6,7 +6,7 @@ import { CMSProductForm } from "./components/CMSProductForm";
 import { ProductForm } from "@/model/product.type";
 
 
-export const CMSProductsPage = () => {
+const CMSProductsPage = () => {
   const { actions, error, pending, products, activeItem } = useProduct()
   useEffect(() => {
     actions.getAll()
@@ -41,3 +41,5 @@ export const CMSProductsPage = () => {
     </div>
   )
 }
+
+export default CMSProductsPage

@@ -1,7 +1,7 @@
 import { selectCartIsEmpty, selectCartList, selectCartTotalCost, useCart } from "@/services/cart"
 import { NavLink } from "react-router-dom";
 
-export const CartPage = () => {
+const CartPage = () => {
   const cartItems = useCart(selectCartList)
   const cartTotalPrice = useCart(selectCartTotalCost)
   const isEmpty = useCart(selectCartIsEmpty)
@@ -50,3 +50,4 @@ export const CartPage = () => {
     </div>
   )
 }
+export default CartPage

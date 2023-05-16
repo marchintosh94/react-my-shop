@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom"
 import { isActive } from "../../utility/router.utility"
 
-export const CMSPage = () => {
+const CMSPage = () => {
   return (
     <div>
       <NavLink to={'/cms/products'} className={(obj) => isActive(obj, 'btn primary', 'btn')}>Products</NavLink>
@@ -10,3 +10,5 @@ export const CMSPage = () => {
     </div>
   )
 }
+
+export default CMSPage

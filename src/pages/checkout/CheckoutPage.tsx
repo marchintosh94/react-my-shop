@@ -1,17 +1,22 @@
 import clsx from "clsx"
 import { useCheckout } from "./hooks/useCheckout"
+import { ServerError } from "@/shared"
 
-export const CheckoutPage = () => {
+const CheckoutPage = () => {
   const {
     actions,
     validators,
     dirty,
     totalCartCost,
-    user
+    user,
+    error
   } = useCheckout()
   return (
     <div className="max-w-sm mx-auto">
       <h1 className="title">CHECHOUT</h1>
+
+      { error && <ServerError message={error}/>}
+
       <section className="text-xl border-b my-3">
         €{totalCartCost.toFixed(2)}
       </section>
@@ -55,3 +60,5 @@ export const CheckoutPage = () => {
     </div>
   )
 }
+
+export default CheckoutPage
